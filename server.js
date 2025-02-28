@@ -2,7 +2,6 @@ const express = require("express");
 const dotenv = require("dotenv").config();
 const connectDb = require("./config/connectionDb");
 const cors = require("cors");
-const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,18 +22,6 @@ app.use("/api/recipes", require("./routes/recipe"));
 app.get("/api", (req, res) => {
   res.json({ message: "API is running..." });
 });
-
-// Serve frontend in production
-if (process.env.NODE_ENV === "production") {
-  const frontendPath = path.join(__dirname, "../frontend/food-blog-app/dist");
-  app.use(express.static(frontendPath));
-
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(frontendPath, "index.html"));
-  });
-} else {
-  console.log("Running in development mode");
-}
 
 // Error handling middleware
 app.use((err, req, res, next) => {
