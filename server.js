@@ -15,6 +15,10 @@ app.use(cors());
 app.use(express.static("public"));
 
 // API Routes
+app.get("/", (req, res) => {
+  res.send("Welcome to the Recipe Sharing API!");
+});
+
 app.use("/api/users", require("./routes/user"));
 app.use("/api/recipes", require("./routes/recipe"));
 
