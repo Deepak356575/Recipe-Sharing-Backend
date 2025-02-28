@@ -19,8 +19,8 @@ app.get("/", (req, res) => {
   res.send("Welcome to the Recipe Sharing API!");
 });
 
-app.use("/api/users", require("./routes/user"));
-app.use("/api/recipes", require("./routes/recipe"));
+app.use("/", require("./routes/user"));
+app.use("/recipe", require("./routes/recipe"));
 
 // Root route for testing API availability
 app.get("/api", (req, res) => {
